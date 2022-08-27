@@ -1,6 +1,7 @@
 import pygame
 from config import *
 from Code.player import*
+from Code.floors import *
 
 class Screen:
     def __init__(self):
@@ -12,6 +13,7 @@ class Screen:
 
     def createSprite(self):
         self.player = Player()
+        self.floor  = floors()
 
     def gameloop(self):
         while True:
@@ -28,7 +30,9 @@ class Screen:
 
     def draw(self):
         self.screen.fill((0,0,0))
+        self.floor.draw()
         self.player.draw()
 
     def update(self):
         self.player.update()
+        self.floor.update()

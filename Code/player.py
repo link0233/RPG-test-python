@@ -48,10 +48,8 @@ class Player(pygame.sprite.Sprite):
         self.image = self.images[self.type][self.rotate]
         self.image.set_colorkey((255,255,255))
 
-        #draw
-        #screen = pygame.display.get_m
-        #self.group.draw(self.screen)
-
+        with open('./Code/poses/player.pos','w') as f:
+            f.write(str(self.rect.centerx)+','+str(self.rect.centery))
     def draw(self):
         #screen = pygame.display.get_surface()
         self.group.draw(self.screen)
