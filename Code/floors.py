@@ -20,11 +20,11 @@ class floors:
     def update(self):
         self.floorGroup.update()
         #get palyer position
-        with open('./Code/poses/player.pos') as f:
+        with open('./Code/poses/player.pos','r') as f:
             for t in f:
                 pPos = t.strip().split(',')
                 break
-        pPos = (int(pPos[0])//100,int(pPos[1])//100)
+        pPos = (int(float(pPos[0]))//100,int(float(pPos[1]))//100)
         #createfloor
         dd = 0
         kk = self.floorsPos
@@ -34,9 +34,9 @@ class floors:
                 del kk[dd]
             
         self.floorsPos = kk
-        for a in range(DELETE_DISTANCE//3*2):
-            for b in range(DELETE_DISTANCE//3*2):
-                pos = (a+pPos[0]-DELETE_DISTANCE//6*2,b+pPos[1]-DELETE_DISTANCE//6*2)
+        for a in range(DELETE_DISTANCE):
+            for b in range(DELETE_DISTANCE//5*4):
+                pos = (a+pPos[0]-DELETE_DISTANCE//2,b+pPos[1]-DELETE_DISTANCE//10*4)
                 if pos not in self.floorsPos:
                     self.floorsPos.append(pos)
                     Floor('grass',self.floorGroup,pos,self.images)

@@ -2,6 +2,7 @@ import pygame
 from config import *
 from Code.player import*
 from Code.floors import *
+from Code.camera import *
 
 class Screen:
     def __init__(self):
@@ -14,6 +15,7 @@ class Screen:
     def createSprite(self):
         self.player = Player()
         self.floor  = floors()
+        self.camera = Camera()
 
     def gameloop(self):
         while True:
@@ -34,5 +36,6 @@ class Screen:
         self.player.draw()
 
     def update(self):
+        self.camera.update()
         self.player.update()
         self.floor.update()

@@ -1,5 +1,7 @@
+from logging import PlaceHolder
 import pygame
 from config import *
+from function import getCameraPosition
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
@@ -15,6 +17,7 @@ class Player(pygame.sprite.Sprite):
         self.vector2 = pygame.math.Vector2()
         self.type = 'walk'
         self.rotate = 2
+        self.pos = [0,0]
 
         self.screen = pygame.display.get_surface()
 
@@ -42,14 +45,21 @@ class Player(pygame.sprite.Sprite):
         if self.vector2.magnitude() > 0:
             self.vector2 = self.vector2.normalize()
 
-        self.rect.center += self.vector2 * PLAYER_MOVESPEED
+        self.pos[0] += self.vector2.x*PLAYER_MOVESPEED
+        self.pos[1] += self.vector2.y*PLAYER_MOVESPEED
+
+        cpos = getCameraPosition()
+        self.rect.centerx = self.pos[0]-cpos[0]+SCREENSIZE[0]//2
+        self.rect.centery = self.pos[1]-cpos[1]+SCREENSIZE[1]//2
 
         #set image
         self.image = self.images[self.type][self.rotate]
         self.image.set_colorkey((255,255,255))
 
+        
+
         with open('./Code/poses/player.pos','w') as f:
-            f.write(str(self.rect.centerx)+','+str(self.rect.centery))
+            f.write(str(self.pos[0])+','+str(self.pos[1]))
     def draw(self):
         #screen = pygame.display.get_surface()
         self.group.draw(self.screen)
