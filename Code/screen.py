@@ -9,6 +9,10 @@ class Screen:
         pygame.init()
         self.screen = pygame.display.set_mode(SCREENSIZE)
         self.clock = pygame.time.Clock()
+        self.poses = {
+            'player':[0,0],
+            'camera':[0,0]
+        }
 
         self.createSprite()
 
@@ -36,6 +40,10 @@ class Screen:
         self.player.draw()
 
     def update(self):
-        self.camera.update()
-        self.player.update()
-        self.floor.update()
+        self.camera.update(self.poses)
+        self.player.update(self.poses)
+        self.poses = {
+            'player':self.player.pos,
+            'camera':self.camera.position
+        }
+        self.floor.update(self.poses)
