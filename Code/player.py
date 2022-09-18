@@ -44,7 +44,7 @@ class Player(pygame.sprite.Sprite):
         #move
         if self.vector2.magnitude() > 0:
             self.vector2 = self.vector2.normalize()
-
+        # if self.pos[0]>-WORLD_SIZE[0]//2*SPRITE_SIZE-SPRITE_SIZE//2 and self.pos[0]<WORLD_SIZE[0]//2*SPRITE_SIZE+SPRITE_SIZE//2 and self.pos[1]>-WORLD_SIZE[1]*SPRITE_SIZE//2-SPRITE_SIZE//2 and self.pos[1]<WORLD_SIZE[1]//2*SPRITE_SIZE+SPRITE_SIZE//2:
         self.pos[0] += self.vector2.x*PLAYER_MOVESPEED
         self.pos[1] += self.vector2.y*PLAYER_MOVESPEED
 

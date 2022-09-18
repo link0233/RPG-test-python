@@ -41,7 +41,7 @@ class floors:
                 pos = (a+pPos[0]//SPRITE_SIZE-DELETE_DISTANCE//2,b+pPos[1]//SPRITE_SIZE-DELETE_DISTANCE//2)
                 if pos not in self.floorsPos:
                     self.floorsPos.append(pos)
-                    newFloor = Floor('grass',self.floorGroup,pos,self.images)
+                    newFloor = Floor(Pos['Map'][int(pos[0])][int(pos[1])][0],self.floorGroup,pos,self.images)
                     self.floors.append(newFloor)
 
         for floor in self.floors:
